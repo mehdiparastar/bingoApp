@@ -1,0 +1,8 @@
+{
+  "name": "bingoApp",
+  "version": "1.0.0",
+  "description": "code challenge ",
+  "main": "index.js",
+  "author": "mehdi parastar <parastar.mehdi@gmail.com>",
+  "license": "MIT"
+}
