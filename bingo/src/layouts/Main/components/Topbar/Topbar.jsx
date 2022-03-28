@@ -6,7 +6,7 @@ import Link from '@mui/material/Link';
 import { useTheme } from '@mui/material/styles';
 import { colors } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
 import BingoLogo from '../../../../svg/logos/Bingo';
 import paletteTypes from '../../../../common/paletteTypes';
 
