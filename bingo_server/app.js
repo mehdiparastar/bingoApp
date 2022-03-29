@@ -8,6 +8,7 @@ const helmet = require('helmet');
 const errorHandler = require("./middlewares/errorHandler");
 const homeRoutes = require("./routes/index");
 const tablesRoutes = require("./routes/tables");
+const playersRoutes = require("./routes/players");
 
 const app = express();
 const server = http.createServer(app);
@@ -19,6 +20,7 @@ app.use(errorHandler);
 
 app.use("/api/", homeRoutes);
 app.use("/api/tables", tablesRoutes);
+app.use("/api/players", playersRoutes);
 
 const io = socketio(server, { cors: { origin: "*" } })
 

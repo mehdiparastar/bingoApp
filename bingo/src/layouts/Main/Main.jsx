@@ -62,7 +62,7 @@ const Main = () => {
             />
             <Box height={{ xs: 56, sm: 64 }} />
             <Container maxWidth='lg'>
-                <Box sx={{ padding: 1, height: '100vh', marginBottom: 1 }} >
+                <Box sx={{ padding: 1, marginBottom: 1 }} >
                     <Outlet />
                 </Box>
             </Container>

@@ -15,18 +15,18 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  if (!req.body.title) return res.status(400).send("Title is required.");
+  if (!req.body.name) return res.status(400).send("Name is required.");
 
-  const movie = new TableModel({ title: req.body.title });
-  await movie.save();
-  res.status(201).send(movie);
+  const table = new TableModel({ name: req.body.name });
+  await table.save();
+  res.status(201).send(table);
 });
 
 router.delete("/:id", async (req, res) => {
-  const movie = await TableModel.findByIdAndDelete(req.params.id);
+  const table = await TableModel.findByIdAndDelete(req.params.id);
 
-  if (!movie)
-    return res.status(404).send("The movie with the given ID was not found.");
+  if (!table)
+    return res.status(404).send("The table with the given ID was not found.");
 
   res.status(204).send();
 });
