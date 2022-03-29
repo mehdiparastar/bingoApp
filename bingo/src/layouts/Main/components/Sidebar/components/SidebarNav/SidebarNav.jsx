@@ -8,6 +8,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { Link as RouterLink } from 'react-router-dom'
 
 const SidebarNav = ({ pages, onClose }) => {
   const theme = useTheme();
@@ -47,8 +48,8 @@ const SidebarNav = ({ pages, onClose }) => {
                   <Grid item xs={6} key={i}>
                     <Link
                       variant="body2"
-                      component={'a'}
-                      href={p.href}
+                      component={RouterLink}
+                      to={p.href}
                       color={activeLink === p.href ? 'primary' : 'textPrimary'}
                       sx={{
                         fontWeight: activeLink === p.href ? 600 : 400,
@@ -67,16 +68,6 @@ const SidebarNav = ({ pages, onClose }) => {
             </Box>
           ))}
         </Box>
-        <Box>
-          <Button
-            variant="outlined"
-            fullWidth
-            component="a"
-            href="/docs-introduction"
-          >
-            Documentation
-          </Button>
-        </Box>
         <Box marginTop={1}>
           <Button
             variant="contained"
@@ -84,9 +75,9 @@ const SidebarNav = ({ pages, onClose }) => {
             fullWidth
             component="a"
             target="blank"
-            href="https://material-ui.com/store/items/bingo-landing-page/"
+            href="https://www.sensory-minds.com/"
           >
-            Purchase now
+            SENSORY MINDS
           </Button>
         </Box>
       </Box>

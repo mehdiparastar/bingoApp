@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
+import { Link as RouterLink } from 'react-router-dom'
 import Typography from '@mui/material/Typography';
 import BingoLogo from '../../../../svg/logos/Bingo';
 
@@ -30,9 +31,9 @@ const Footer = () => (
         <Box display="flex" flexWrap={'wrap'} alignItems={'center'}>
           <Box marginTop={1} marginRight={2}>
             <Link
+              component={RouterLink}
               underline="none"
-              component="a"
-              href="/"
+              to={'/'}
               color="textPrimary"
               variant={'subtitle2'}
             >
@@ -42,12 +43,12 @@ const Footer = () => (
           <Box marginTop={1} marginRight={2}>
             <Link
               underline="none"
-              component="a"
-              href="/docs-introduction"
+              component={RouterLink}
+              to={'/bingo'}
               color="textPrimary"
               variant={'subtitle2'}
             >
-              Documentation
+              Bingo
             </Link>
           </Box>
           <Box marginTop={1}>
@@ -56,10 +57,10 @@ const Footer = () => (
               color="primary"
               component="a"
               target="blank"
-              href="https://material-ui.com/store/items/bingo-landing-page/"
+              href="https://www.sensory-minds.com/"
               size="small"
             >
-              Purchase now
+              Sensory Minds
             </Button>
           </Box>
         </Box>
@@ -72,7 +73,7 @@ const Footer = () => (
         color="textSecondary"
         gutterBottom
       >
-        &copy; bingo. 2021, mehdi. All rights reserved
+        &copy; bingo. {new Date().getFullYear()}, mehdi. All rights reserved
       </Typography>
       <Typography
         align={'center'}
@@ -80,10 +81,9 @@ const Footer = () => (
         color="textSecondary"
         component={'p'}
       >
-        When you visit or interact with our sites, services or tools, we or our
-        authorised service providers may use cookies for storing information to
-        help provide you with a better, faster and safer experience and for
-        marketing purposes.
+        <strong>
+          This is a challenge code.
+        </strong>
       </Typography>
     </Grid>
   </Grid>

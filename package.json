@@ -4,5 +4,6 @@
   "description": "code challenge ",
   "main": "index.js",
   "author": "mehdi parastar <parastar.mehdi@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }

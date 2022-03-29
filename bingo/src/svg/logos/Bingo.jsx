@@ -16,34 +16,44 @@ const Bingo = ({ width = 45, height = 70 }) => {
     >
       <rect
         width="16.811"
+        height="60.926"
+        x="0"
+        y="0"
+        fill={colorPrimaryMain}
+        stroke={colorPrimaryDark}
+        rx="8.406"
+        transform="rotate(0 .664 7.77)"
+      />
+      <rect
+        width="16.811"
         height="68.926"
-        x="0.664"
-        y="7.769"
+        x="10"
+        y="0"
         fill={colorPrimaryMain}
         stroke={colorPrimaryDark}
         rx="8.406"
         transform="rotate(-25 .664 7.77)"
-      ></rect>
+      />
       <rect
         width="16.811"
         height="68.926"
-        x="28.665"
-        y="7.769"
+        x="26"
+        y="-22"
         fill={colorPrimaryMain}
         stroke={colorPrimaryDark}
         rx="8.406"
-        transform="rotate(-25 28.665 7.77)"
-      ></rect>
+        transform="rotate(25 .664 70.77)"
+      />
       <rect
         width="16.811"
-        height="16.81"
-        x="78.769"
-        y="0.664"
+        height="68.926"
+        x="70"
+        y="0"
         fill={colorPrimaryMain}
         stroke={colorPrimaryDark}
-        rx="8.405"
-        transform="rotate(25 78.77 .664)"
-      ></rect>
+        rx="8.406"
+        transform="rotate(0 .664 7.77)"
+      />
     </svg>
   );
 };

@@ -9,6 +9,7 @@ import Slide from '@mui/material/Slide';
 import { Topbar, Sidebar, Footer } from './components';
 import Container from '@mui/material/Container';
 import { pages } from '../navigation';
+import { Outlet } from 'react-router-dom';
 
 const HideOnScroll = ({ children }) => {
     const trigger = useScrollTrigger();
@@ -24,13 +25,7 @@ HideOnScroll.propTypes = {
     children: PropTypes.node.isRequired,
 }
 
-const Main = ({
-    children,
-    themeToggler,
-    themeMode,
-    setThemePalette,
-    paletteType,
-}) => {
+const Main = () => {
     const theme = useTheme();
     const [openSidebar, setOpenSidebar] = useState(false);
 
@@ -52,13 +47,9 @@ const Main = ({
                     }}
                     elevation={1}
                 >
-                    <Container paddingY={{ xs: 1 / 2, sm: 1 }}>
+                    <Container maxWidth='xl'>
                         <Topbar
                             onSidebarOpen={handleSidebarOpen}
-                            themeMode={themeMode}
-                            themeToggler={themeToggler}
-                            setThemePalette={setThemePalette}
-                            paletteType={paletteType}
                         />
                     </Container>
                 </AppBar>
@@ -69,12 +60,14 @@ const Main = ({
                 variant="temporary"
                 pages={pages}
             />
-            <main>
-                <Box height={{ xs: 56, sm: 64 }} />
-                {children}
-                <Divider />
-            </main>
-            <Container paddingY={4}>
+            <Box height={{ xs: 56, sm: 64 }} />
+            <Container maxWidth='lg'>
+                <Box sx={{ padding: 1, height: '100vh', marginBottom: 1 }} >
+                    <Outlet />
+                </Box>
+            </Container>
+            <Divider />
+            <Container maxWidth='xl'>
                 <Footer />
             </Container>
         </div>
@@ -83,10 +76,6 @@ const Main = ({
 
 Main.propTypes = {
     children: PropTypes.node,
-    themeToggler: PropTypes.func.isRequired,
-    themeMode: PropTypes.string.isRequired,
-    setThemePalette: PropTypes.func.isRequired,
-    paletteType: PropTypes.string.isRequired,
 }
 
 export default Main

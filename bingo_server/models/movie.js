@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const getConn = require('../db/getConn');
 
-const dbName = 'base'
+const dbName = 'bingo'
 
 const conn = getConn(dbName)
 

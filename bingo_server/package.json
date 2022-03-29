@@ -6,9 +6,14 @@
   "author": "mehdi parastar <parastar.mehdi@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.19.2",
+    "const": "^1.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
-    "mongoose": "^6.2.8"
+    "helmet": "^5.0.2",
+    "mongoose": "^6.2.8",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.4.1"
   },
   "scripts": {
     "start": "nodemon index.js"

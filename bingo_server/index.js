@@ -6,12 +6,12 @@ db.initDbConnection()
     .then(out => {
         console.log("Connected to MongoDB")
 
-        const app = require("./app");
-        app.listen(port, () => {
+        const server = require("./app");
+        server.listen(port, () => {
             console.log(`Server started on port ${port}...`)
         })
-        app.on("error", err => {
-            console.log('app Err', err)
+        server.on("error", err => {
+            console.log('server Err', err)
         })
     })
     .catch(ex => {
