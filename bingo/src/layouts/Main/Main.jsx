@@ -66,10 +66,21 @@ const Main = () => {
                     <Outlet />
                 </Box>
             </Container>
-            <Divider />
-            <Container maxWidth='xl'>
-                <Footer />
-            </Container>
+            <AppBar
+                position={'fixed'}
+                variant=""
+                sx={{
+                    backgroundColor: theme.palette.background.paper,
+                    top: 'auto',
+                    bottom: 0
+                }}
+                elevation={0}
+            >
+                <Divider />
+                <Container maxWidth='xl'>
+                    <Footer />
+                </Container>
+            </AppBar>
         </div>
     )
 };
