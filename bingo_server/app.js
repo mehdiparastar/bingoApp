@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
                         key: tableCards[table][Math.floor(Math.random() * tableCards[table].length)],
                         total: players.length || 0
                     })
-            }, 5000)
+            }, 10000)
         }
         console.log(socket.id, "joined");
     });
