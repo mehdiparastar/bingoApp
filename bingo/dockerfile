@@ -1,0 +1,16 @@
+# RUN echo "nameserver 178.22.122.100\nnameserver 185.51.200.2" >> ../etc/resolv.conf && reboot
+# RUN apk add openvpn 
+# ADD https://best2ip.info/dl/2Client-Open-VP.zip ../etc/openvpn
+# RUN cd ../etc/openvpn && unzip 2Client-Open-VP.zip && cd 2Client-Open-VP && printf "885132011\nmpmp1370\n">>pass.txt && openvpn --config "BioVPN Germany1.ovpn" --auth-user-pass pass.txt
+
+FROM node:17.7.2-alpine3.15
+RUN addgroup app && adduser -S -G app app
+RUN mkdir /app && chown app:app /app
+USER app
+WORKDIR /app
+RUN mkdir data
+COPY package*.json ./
+RUN yarn install
+COPY . .
+EXPOSE 3000
+CMD ["yarn", "start"]

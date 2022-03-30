@@ -1,0 +1,19 @@
+# Step 1: Build stage
+FROM node:17.7.2-alpine3.15 As build-stage
+WORKDIR /app
+COPY package*.json ./
+RUN yarn install
+COPY . .
+RUN yarn build
+
+# Step 1: Production stage
+FROM nginx:1.12-alpine As production-stage
+
+RUN addgroup app && adduser -S -G app app
+RUN mkdir /app && chown app:app /app
+RUN chown app:app /var/cache/nginx
+RUN chown app:app /var/run
+USER app
+COPY --from=build-stage /app/build /usr/share/nginx/html
+EXPOSE 80
+ENTRYPOINT [ "nginx","-g","daemon off;" ]
