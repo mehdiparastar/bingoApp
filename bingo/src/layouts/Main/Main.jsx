@@ -66,6 +66,7 @@ const Main = () => {
                     <Outlet />
                 </Box>
             </Container>
+            <Box height={{ xs: 80, sm: 80 }} />
             <AppBar
                 position={'fixed'}
                 variant=""

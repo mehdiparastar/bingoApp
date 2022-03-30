@@ -14,7 +14,7 @@ services:
       - db3
     restart: "no"
     networks:
-      mongors-network:
+      bingo-mongors-network:
         ipv4_address: 192.168.0.50
     entrypoint: [ "./scripts/db-setup-entrypoint.sh" ]
 
@@ -24,7 +24,7 @@ services:
     volumes:
       - ./db/data1:/data/db
     networks:
-      mongors-network:
+      bingo-mongors-network:
         ipv4_address: 192.168.0.51
     ports:
       - 27021:27017
@@ -46,7 +46,7 @@ services:
     volumes:
       - ./db/data2:/data/db
     networks:
-      mongors-network:
+      bingo-mongors-network:
         ipv4_address: 192.168.0.52
     ports:
       - 27022:27017
@@ -65,7 +65,7 @@ services:
     volumes:
       - ./db/data3:/data/db
     networks:
-      mongors-network:
+      bingo-mongors-network:
         ipv4_address: 192.168.0.53
     ports:
       - 27023:27017
@@ -84,7 +84,7 @@ services:
     ports:
       - 3000:3000
     networks:
-      mongors-network:
+      bingo-mongors-network:
         ipv4_address: 192.168.0.54
     restart: unless-stopped
     environment:
@@ -101,7 +101,7 @@ services:
     ports:
       - 3001:3001
     networks:
-      mongors-network:
+      bingo-mongors-network:
         ipv4_address: 192.168.0.55
     restart: unless-stopped
     environment:
@@ -109,7 +109,7 @@ services:
       - REPLICA_NAME=dbrs
 
 networks:
-  mongors-network:
+  bingo-mongors-network:
     driver: bridge
     ipam:
       driver: default
