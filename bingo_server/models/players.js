@@ -9,7 +9,8 @@ const PlayersSchema = new mongoose.Schema({
   playerId: {
     type: String,
     required: true,
-    index: true
+    index: true,
+    required: [true, 'الزامی'],
   },
   table: {
     type: mongoose.Schema.Types.ObjectId,
@@ -19,6 +20,8 @@ const PlayersSchema = new mongoose.Schema({
     index: true
   }
 }, { timestamps: true })
+
+PlayersSchema.index({ playerId: 1, table: 1 }, { unique: true })
 
 const PlayersModel = conn.model('players', PlayersSchema);
 

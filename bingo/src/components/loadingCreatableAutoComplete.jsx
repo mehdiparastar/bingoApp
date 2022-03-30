@@ -14,7 +14,7 @@ export default function LoadingCreatableAutoComplete({
     value,
     setValue,
     label,
-
+    size,
     rest
 }) {
     const [open, setOpen] = React.useState(false);
@@ -87,6 +87,7 @@ export default function LoadingCreatableAutoComplete({
                             </React.Fragment>
                         ),
                     }}
+                    size={size}
                 />
             )}
             /////////////// creatable //////////////////////////
@@ -101,7 +102,7 @@ export default function LoadingCreatableAutoComplete({
                         const createNewValue = await createOption(createOptionApiEndPoint, { [optionTitleKey]: newValue.inputValue })
                         enqueueSnackbar(`successfully created`, { variant: 'success' })
                         setValue({
-                            ...createNewValue.data,                            
+                            ...createNewValue.data,
                             title: createNewValue.data[optionTitleKey],
                         });
                     }
@@ -149,5 +150,6 @@ export default function LoadingCreatableAutoComplete({
 }
 
 LoadingCreatableAutoComplete.defaultProps = {
-    noOptionTitle: 'no options exist!'
+    noOptionTitle: 'no options exist!',
+    size: 'medium'
 }

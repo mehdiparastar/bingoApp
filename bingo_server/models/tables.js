@@ -9,12 +9,13 @@ const TablesSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    index: true
+    index: true,
+    unique: true
   }
 }, { timestamps: true })
 
-const TablesModel = conn.model('tables', TablesSchema);
-
 TablesSchema.index({ name: 1 }, { unique: true })
+
+const TablesModel = conn.model('tables', TablesSchema);
 
 module.exports = TablesModel; 
