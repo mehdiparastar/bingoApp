@@ -1,4 +1,4 @@
-import { Button, colors, Grid, Paper, ToggleButton, Typography } from "@mui/material";
+import { Button, colors, Grid, LinearProgress, Paper, ToggleButton, Typography } from "@mui/material";
 import * as React from "react";
 import { io } from "socket.io-client";
 import LoadingCreatableAutoComplete from "../../../components/loadingCreatableAutoComplete";
@@ -11,7 +11,7 @@ import { makeStyles } from '@mui/styles';
 import clsx from 'clsx'
 import _, { set } from 'lodash'
 import Confetti from 'react-confetti'
-import { getNewTableDetail, validSelections } from '../../../../../utils'
+import { getNewTableDetail, validSelections } from '../../../utils'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,7 +33,7 @@ function Bingo() {
         key: "",
         name: "Chat",
     });
-    const [tables, setTables] = React.useState([]);
+    const [key, setKey] = React.useState(null);
     const [selectedTable, setSelectedTable] = React.useState(null);
     const [thisTablePlayersCount, setThisTablePlayersCount] = React.useState(0);
     const [isJoined, setIsJoined] = React.useState(false);
@@ -58,8 +58,8 @@ function Bingo() {
             setThisTablePlayersCount(data.total);
         })
 
-        socketRef.current.on("output-messages", (data) => {
-
+        socketRef.current.on("newKey", (data) => {
+            setKey(data.key)
         });
 
         return (() => {
@@ -113,16 +113,28 @@ function Bingo() {
                     className={classes.confetti}
                 />
             }
-            {
-                selectedTable && isJoined ?
-                    <h2>
-                        {`Number of players of "${selectedTable.name}" table is: ${thisTablePlayersCount}`}
-                    </h2>
-                    :
-                    <h2>
-                        Bingo
-                    </h2>
-            }
+            <Grid container>
+                <Grid item xs={5}>
+                    {
+                        selectedTable && isJoined ?
+                            <h2>
+                                {`Number of players of "${selectedTable.name}" table is: ${thisTablePlayersCount}`}
+                            </h2>
+                            :
+                            <h2>
+                                Bingo
+                            </h2>
+                    }
+                </Grid>
+                {selectedTable && isJoined &&
+                    <Grid sx={{ width: '100%' }} justifyContent="center" alignItems={'center'} item xs={7}>
+                        <LinearProgress value={50} color="success" />
+                        <Paper sx={{ display: 'flex', alignItems: 'center', margin: 'auto', textAlign: 'center', width: '100%', borderRadius: 0, height: '100%', backgroundColor: theme.palette.grey[800] }}>
+                            <Typography variant="h5" sx={{ textAlign: 'center', width: '100%' }}>{key}</Typography>
+                        </Paper>
+                    </Grid>
+                }
+            </Grid>
 
             <Grid container justifyContent="space-between" alignItems="center">
                 <Grid item>
@@ -161,7 +173,11 @@ function Bingo() {
                                 <ToggleButton
                                     disabled={!isJoined}
                                     selected={selectedIndex.includes(index)}
-                                    onClick={e => setSelectedIndex(selectedIndex => ([...(new Set([...selectedIndex, index]))]))}
+                                    onClick={e => {
+                                        if (item === key) {
+                                            setSelectedIndex(selectedIndex => ([...(new Set([...selectedIndex, index]))]))
+                                        }
+                                    }}
                                     size="large"
                                     sx={{
                                         height: {
