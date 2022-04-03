@@ -1,9 +1,9 @@
 #!/bin/bash
 
-docker image prune -f
-docker container prune -f
-docker volume prune -f
-docker system prune -f
+# docker image prune -f
+# docker container prune -f
+# docker volume prune -f
+# docker system prune -f
 
 sleep 5
 

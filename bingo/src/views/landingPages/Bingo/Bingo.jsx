@@ -52,7 +52,7 @@ function Bingo() {
     }, [])
 
     React.useEffect(() => {
-        socketRef.current = io("http://localhost:3001/");
+        socketRef.current = io("http://192.168.1.3:3001/");
 
         socketRef.current.on("newJoining", (data) => {
             setThisTablePlayersCount(data.total);

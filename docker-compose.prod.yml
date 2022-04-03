@@ -13,9 +13,6 @@ services:
       - db2
       - db3
     restart: "no"
-    networks:
-      bingo-mongors-network:
-        ipv4_address: 192.168.0.50
     entrypoint: [ "./scripts/db-setup-entrypoint.sh" ]
 
   db1:
@@ -23,9 +20,6 @@ services:
     image: mongo:4.4
     volumes:
       - ./db/data1:/data/db
-    networks:
-      bingo-mongors-network:
-        ipv4_address: 192.168.0.51
     ports:
       - 27021:27017
     links:
@@ -45,9 +39,6 @@ services:
     image: mongo:4.4
     volumes:
       - ./db/data2:/data/db
-    networks:
-      bingo-mongors-network:
-        ipv4_address: 192.168.0.52
     ports:
       - 27022:27017
     restart: unless-stopped
@@ -64,9 +55,6 @@ services:
     image: mongo:4.4
     volumes:
       - ./db/data3:/data/db
-    networks:
-      bingo-mongors-network:
-        ipv4_address: 192.168.0.53
     ports:
       - 27023:27017
     restart: unless-stopped
@@ -84,13 +72,10 @@ services:
       context: ./bingo
       dockerfile: dockerfile.prod
     ports:
-      - 80:80
-    networks:
-      bingo-mongors-network:
-        ipv4_address: 192.168.0.54
+      - 80:80    
     restart: unless-stopped
     environment:
-      - REACT_APP_API_URL=http://192.168.0.55:3001/api
+      - REACT_APP_API_URL=http://server:3001/api
 
   server:
     container_name: server
@@ -102,18 +87,7 @@ services:
     build: ./bingo_server
     ports:
       - 3001:3001
-    networks:
-      bingo-mongors-network:
-        ipv4_address: 192.168.0.55
     restart: unless-stopped
     environment:
       - REPLICA_URL=mongodb://db1:27017,db2:27017,db3:27017
       - REPLICA_NAME=dbrs
-
-networks:
-  bingo-mongors-network:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: "192.168.0.0/16"
